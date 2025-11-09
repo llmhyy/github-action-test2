@@ -8,12 +8,14 @@
 
 import java
 
-from LocalVariableDecl v, StringLiteral s
-where
-  // 变量名包含 password（忽略大小写）
-  v.getName().matches("(?i).*password.*") and
-  // 初始化表达式是字符串常量
-  v.getInitializer() = s and
-  s.getValue().length() > 0
-select v, "Variable '" + v.getName() +
-          "' is initialized with a hardcoded password: \"" + s.getValue() + "\"."
+from LocalVariable v
+select v, "Found variable " + v.getName()
+
+
+// from LocalVariableDecl v, StringLiteral s
+// where
+//   v.getName().regexpMatch("(?i).*pass(word)?|pwd.*") //and
+//   //v.getInitializer() = s and
+//   //s.getValue().length() > 0
+// select v, "Variable '" + v.getName() +
+//           "' is initialized with a hardcoded password: \"" + s.getValue() + "\"."
