@@ -8,9 +8,9 @@
 
 import java
 
-from LocalVariable v
-select v, "Found variable " + v.getName()
-
+import java
+from File f
+select f, "File: " + f.getRelativePath()
 
 // from LocalVariableDecl v, StringLiteral s
 // where
