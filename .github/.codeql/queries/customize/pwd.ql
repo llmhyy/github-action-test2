@@ -19,6 +19,6 @@ where
     exists(LocalVariable lv | lv = v and lv.getAnInitializer() = s)
     or
     // field declaration with initializer: private String password = "..."
-    exists(Field f | f = v and f.getAnInitializer() = s)
+    exists(Field f | f = v and f.getInitializer() = s)
   )
 select s, "This string contains a hardcoded password which should be removed."
