@@ -26,5 +26,5 @@ jobs:
       run: mvn -B test --file pom.xml
 
     - uses: github/codeql-action/init@v2
-        with:
-          languages: javascript, python, java
+      with:
+        languages: 'javascript, python, java'
