@@ -10,9 +10,9 @@ import java
 
 from LocalVariableDecl v, StringLiteral s
 where
-  // 名称包含 "password"，忽略大小写
+  // 变量名包含 password（忽略大小写）
   v.getName().matches("(?i).*password.*") and
-  // 初始化表达式是字符串字面量
+  // 初始化表达式是字符串常量
   v.getInitializer() = s and
   s.getValue().length() > 0
 select v, "Variable '" + v.getName() +
