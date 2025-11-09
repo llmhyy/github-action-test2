@@ -7,7 +7,7 @@
 
 import java
 
-from Variable v, StringLiteral s, Assignment a, VariableDeclarator vd
+from Variable v, StringLiteral s, Assignment a
 where
   v.getName().toLowerCase().matches("(?i).*password.*") and
   s.getValue().length() > 0 and
@@ -15,7 +15,10 @@ where
     // assignment: password = "..."
     (a.getDest() = v.getAnAccess() and a.getSource() = s)
     or
-    // declaration with initializer: String password = "..."
-    (vd.getVariable() = v and vd.getInitializer() = s)
+    // local variable declaration with initializer: String password = "..."
+    exists(LocalVariable lv | lv = v and lv.getAnInitializer() = s)
+    or
+    // field declaration with initializer: private String password = "..."
+    exists(Field f | f = v and f.getAnInitializer() = s)
   )
 select s, "This string contains a hardcoded password which should be removed."
