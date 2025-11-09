@@ -1,16 +1,23 @@
 /**
- * @id java/hardcoded-password
  * @kind problem
- * @problem.severity error
- * @language java
- * @description Detect hardcoded passwords in variable declarations.
+ * @id demo/java/localvar-hardcoded-password
+ * @name Hardcoded password (LocalVariableDecl)
+ * @description Detect local variable declarations that contain a hardcoded password.
+ * @tags security
  */
 
 import java
 
-import java
-from File f
-select f, "File: " + f.getRelativePath()
+
+from LocalVariableDecl v, RefType t, StringLiteral lit
+where
+  v.getInitializer() = lit and
+  v.getType() = t and
+  t.hasQualifiedName("java.lang", "String") and
+  v.getName().regexpMatch("(?i)password")
+select v, "Hardcoded password: " + lit.getValue()
+
+
 
 // from LocalVariableDecl v, StringLiteral s
 // where
@@ -19,3 +26,7 @@ select f, "File: " + f.getRelativePath()
 //   //s.getValue().length() > 0
 // select v, "Variable '" + v.getName() +
 //           "' is initialized with a hardcoded password: \"" + s.getValue() + "\"."
+
+//e1 = a and
+//a.getSource() = s1 and                    // 右边确实是字符串字面量 => 常量
+// 左侧变量名（文本）含 pass/password/pwd，忽略大小写；右值非空 AssignExpr
