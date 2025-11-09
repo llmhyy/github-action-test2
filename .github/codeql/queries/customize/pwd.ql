@@ -9,7 +9,7 @@ import java
 
 from Variable v, StringLiteral s, Assignment a
 where 
-  v.getName().matches("(?i).*password.*") and
+  v.getName().matches("(?i).*password*") and
   s.getValue().length() > 0 and
   a.getDest() = v.getAnAccess() and
   a.getSource() = s
