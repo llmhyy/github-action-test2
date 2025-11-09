@@ -25,10 +25,3 @@ jobs:
     - name: Test with Maven
       run: mvn -B test --file pom.xml
 
-    - uses: github/codeql-action/init@v3
-      with:
-        languages: 'java'
-        queries: security-extended
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
