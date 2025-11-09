@@ -7,12 +7,9 @@
 
 import java
 
-from Variable v, StringLiteral s, Assignment a
+from Variable v, StringLiteral s
 where
   v.getName().toLowerCase().matches("(?i).*password.*") and
   s.getValue().length() > 0 and
-  (
-    // assignment: password = "..."
-    (a.getDest() = v.getAnAccess() and a.getSource() = s)
-  )
+  s = v.getInitializer()
 select s, "This string contains a hardcoded password which should be removed."
