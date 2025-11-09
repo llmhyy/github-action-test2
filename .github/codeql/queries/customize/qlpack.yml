@@ -1,5 +1,6 @@
 name: github/codeql-customize
 version: 0.0.1
-description: Custom queries for this repository
-dependencies:
-  codeql/java-all: '*'
+library: false
+libraryPathDependencies: codeql-java
+queries:
+  - ./pwd.ql
