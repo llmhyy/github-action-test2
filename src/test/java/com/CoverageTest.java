@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
-class MainTest {
+class CoverageTest {
 
 // 根据你的工程实际获取实例，这里假设有无参构造
     private final Main calculator = new Main();
