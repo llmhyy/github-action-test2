@@ -5,12 +5,17 @@
  * @language java
  */
 
-import javajava
+import java
 
-from Variable v, StringLiteral s, Assignment a
-where 
+from Variable v, StringLiteral s, Assignment a, VariableDeclarator vd
+where
   v.getName().toLowerCase().matches("(?i).*password.*") and
   s.getValue().length() > 0 and
-  a.getDest() = v.getAnAccess() and
-  a.getSource() = s
+  (
+    // assignment: password = "..."
+    (a.getDest() = v.getAnAccess() and a.getSource() = s)
+    or
+    // declaration with initializer: String password = "..."
+    (vd.getVariable() = v and vd.getInitializer() = s)
+  )
 select s, "This string contains a hardcoded password which should be removed."
