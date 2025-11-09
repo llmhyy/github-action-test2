@@ -24,3 +24,7 @@ jobs:
 
     - name: Test with Maven
       run: mvn -B test --file pom.xml
+
+    - uses: github/codeql-action/init@v2
+        with:
+          languages: javascript, python, java
