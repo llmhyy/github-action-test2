@@ -10,6 +10,7 @@
 # supported CodeQL languages.
 #
 name: "CodeQL"
+run-name: ${{ github.actor }} is scanning code by code query languages
 
 on:
   push:
