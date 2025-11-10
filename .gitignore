@@ -8,3 +8,4 @@ target/classes/com/Main.class
 target/test-classes/com/MainTest.class
 target/classes/com/SqlInjectionExample.class
 target/classes/com/ResourceLeakExample.class
+target/test-classes/com/CoverageTest.class
